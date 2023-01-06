@@ -1,4 +1,4 @@
-FROM ghcr.io/bjia56/armv7l-wheel-builder:stage1
+FROM stage1
 
 RUN wget -q https://github.com/Kitware/CMake/releases/download/v3.25.1/cmake-3.25.1.tar.gz && \
     tar xf cmake-3.25.1.tar.gz && \
