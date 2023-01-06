@@ -7,7 +7,9 @@ RUN echo "armhfp" > /etc/yum/vars/basearch && \
 RUN yum -y update && \
     yum -y groupinstall "Development Tools" && \
     yum -y install openssl-devel bzip2-devel libffi-devel xz-devel && \
-    yum -y install wget which git
+    yum -y install wget which git && \
+    yum -y clean all && \
+    rm -rf /var/cache
 
 RUN wget -q https://www.python.org/ftp/python/3.7.16/Python-3.7.16.tgz && \
     tar xf Python-3.7.16.tgz && \
