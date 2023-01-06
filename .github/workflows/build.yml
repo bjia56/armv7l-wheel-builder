@@ -61,6 +61,11 @@ jobs:
     permissions:
       contents: read
       packages: write
+    services:
+      registry:
+        image: registry:2
+        ports:
+          - 5000:5000
 
     steps:
       - name: Checkout repository
@@ -100,11 +105,17 @@ jobs:
           docker load --input /tmp/stage1.tar
           docker image ls -a
 
+      - name: Push image to local registry
+        run: |
+          docker buildx imagetools create \
+            --tag localhost:5000/${{ env.IMAGE_NAME }}:stage1 \
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:stage1
+
       - name: Build Docker image (stage 2)
         uses: docker/build-push-action@v3
         with:
           context: ./stage2
-          build-contexts: stage1=docker-image://ghcr.io/bjia56/armv7l-wheel-builder:stage1
+          build-contexts: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:stage1=docker-image://localhost:5000/${{ env.IMAGE_NAME }}:stage1
           push: ${{ github.event_name != 'pull_request' }}
           platforms: linux/armhf
           tags: ${{ steps.meta.outputs.tags }}
