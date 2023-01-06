@@ -25,3 +25,4 @@ RUN wget https://github.com/NixOS/patchelf/releases/download/0.17.0/patchelf-0.1
 RUN wget https://static.rust-lang.org/rustup/dist/armv7-unknown-linux-gnueabihf/rustup-init && \
     chmod +x rustup-init && \
     ./rustup-init -y
+ENV PATH=$PATH:/root/.cargo/bin
