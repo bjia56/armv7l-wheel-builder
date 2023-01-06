@@ -104,6 +104,7 @@ jobs:
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: ./stage2
+          build-contexts: ghcr.io/bjia56/armv7l-wheel-builder:stage1=docker-image://ghcr.io/bjia56/armv7l-wheel-builder:stage1
           push: ${{ github.event_name != 'pull_request' }}
           platforms: linux/armhf
           tags: ${{ steps.meta.outputs.tags }}
