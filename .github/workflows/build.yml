@@ -97,9 +97,8 @@ jobs:
 
       - name: Push image to local registry
         run: |
-          docker buildx imagetools create \
-            --tag localhost:5000/stage1:latest \
-            stage1:latest
+          docker image tag stage1:latest localhost:5000/stage1:latest
+          docker image push localhost:5000/stage1:latest
 
       - name: Build Docker image (stage 2)
         uses: docker/build-push-action@v3
