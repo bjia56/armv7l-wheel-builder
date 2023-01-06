@@ -39,7 +39,7 @@ jobs:
             type=ref,event=pr
 
       - name: Build Docker image (stage 1)
-        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        uses: docker/build-push-action@v3
         with:
           context: ./stage1
           push: false
@@ -101,7 +101,7 @@ jobs:
           docker image ls -a
 
       - name: Build Docker image (stage 2)
-        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        uses: docker/build-push-action@v3
         with:
           context: ./stage2
           build-contexts: ghcr.io/bjia56/armv7l-wheel-builder:stage1=docker-image://ghcr.io/bjia56/armv7l-wheel-builder:stage1
