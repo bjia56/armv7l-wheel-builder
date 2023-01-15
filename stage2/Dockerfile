@@ -3,7 +3,7 @@ FROM stage1
 RUN wget -q https://github.com/Kitware/CMake/releases/download/v3.25.1/cmake-3.25.1.tar.gz && \
     tar xf cmake-3.25.1.tar.gz && \
     cd cmake-3.25.1 && \
-    ./bootstrap -- -DCMAKE_BUILD_TYPE:STRING=Release && \
+    ./bootstrap -- -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_PREFIX_PATH=/usr/local/ssl && \
     make && \
     make install && \
     cd .. && \
