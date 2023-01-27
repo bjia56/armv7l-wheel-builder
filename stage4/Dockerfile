@@ -15,3 +15,8 @@ RUN pip3.7 install -U setuptools wheel && \
 
 RUN ln -s /usr/local/bin/pip3.8 /usr/local/bin/pip
 RUN pip install auditwheel
+
+RUN wget https://go.dev/dl/go1.19.5.linux-armv6l.tar.gz && \
+    tar -C /usr/local -xzf go1.19.5.linux-armv6l.tar.gz && \
+    rm go1.19.5.linux-armv6l.tar.gz
+ENV PATH=$PATH:/usr/local/go/bin
