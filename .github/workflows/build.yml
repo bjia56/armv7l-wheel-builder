@@ -35,8 +35,8 @@ jobs:
           push: false
           platforms: linux/armhf
           tags: stage1:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=gha,scope=${{ github.ref }}-stage1
+          cache-to: type=gha,mode=max,scope=${{ github.ref }}-stage1
           outputs: type=docker,dest=/tmp/stage1.tar
 
       - name: Upload artifact
@@ -93,8 +93,8 @@ jobs:
           push: false
           platforms: linux/armhf
           tags: stage2:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=gha,scope=${{ github.ref }}-stage2
+          cache-to: type=gha,mode=max,scope=${{ github.ref }}-stage2
           outputs: type=docker,dest=/tmp/stage2.tar
 
       - name: Upload artifact
@@ -151,8 +151,8 @@ jobs:
           push: false
           platforms: linux/armhf
           tags: stage3:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=gha,scope=${{ github.ref }}-stage3
+          cache-to: type=gha,mode=max,scope=${{ github.ref }}-stage3
           outputs: type=docker,dest=/tmp/stage3.tar
 
       - name: Upload artifact
@@ -227,5 +227,5 @@ jobs:
           platforms: linux/armhf
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=gha,scope=${{ github.ref }}-stage4
+          cache-to: type=gha,mode=max,scope=${{ github.ref }}-stage4
