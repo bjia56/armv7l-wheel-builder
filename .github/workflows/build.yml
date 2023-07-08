@@ -201,6 +201,64 @@ jobs:
           docker image tag stage3:latest localhost:5000/stage3:latest
           docker image push localhost:5000/stage3:latest
 
+      - name: Build Docker image (stage 4)
+        uses: docker/build-push-action@v3
+        with:
+          context: ./stage4
+          build-contexts: stage3=docker-image://localhost:5000/stage3:latest
+          push: false
+          platforms: linux/armhf
+          tags: stage4:latest
+          cache-from: type=gha,scope=${{ github.ref }}-stage4
+          cache-to: type=gha,mode=max,scope=${{ github.ref }}-stage4
+          outputs: type=docker,dest=/tmp/stage4.tar
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: stage4
+          path: /tmp/stage4.tar
+
+  build-image-stage5:
+    needs: build-image-stage4
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    services:
+      registry:
+        image: registry:2
+        ports:
+          - 5000:5000
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        with:
+          driver-opts: network=host
+
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: stage4
+          path: /tmp
+
+      - name: Load image
+        run: |
+          docker load --input /tmp/stage4.tar
+          docker image ls -a
+
+      - name: Push image to local registry
+        run: |
+          docker image tag stage4:latest localhost:5000/stage4:latest
+          docker image push localhost:5000/stage4:latest
+
       - name: Log in to the Container registry
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
@@ -218,14 +276,14 @@ jobs:
             type=ref,event=branch
             type=ref,event=pr
 
-      - name: Build Docker image (stage 4)
+      - name: Build Docker image (stage 5)
         uses: docker/build-push-action@v3
         with:
-          context: ./stage4
-          build-contexts: stage3=docker-image://localhost:5000/stage3:latest
+          context: ./stage5
+          build-contexts: stage4=docker-image://localhost:5000/stage4:latest
           push: ${{ github.event_name != 'pull_request' }}
           platforms: linux/armhf
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha,scope=${{ github.ref }}-stage4
-          cache-to: type=gha,mode=max,scope=${{ github.ref }}-stage4
+          cache-from: type=gha,scope=${{ github.ref }}-stage5
+          cache-to: type=gha,mode=max,scope=${{ github.ref }}-stage5
