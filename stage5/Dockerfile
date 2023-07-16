@@ -15,4 +15,4 @@ RUN ../gcc-10.2.0/configure \
       --disable-multilib \
       --with-float=hard \
       --prefix=/usr/local/gcc/10.2.0
-RUN make && make install
+RUN make -j4 && make install

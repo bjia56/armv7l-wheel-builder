@@ -21,7 +21,7 @@ RUN wget https://github.com/openssl/openssl/archive/refs/tags/OpenSSL_1_1_1s.tar
     tar xf OpenSSL_1_1_1s.tar.gz && \
     cd openssl-OpenSSL_1_1_1s && \
     ./config no-shared --prefix=/usr/local/ssl --openssldir=/usr/local/ssl CPPFLAGS="${MANYLINUX_CPPFLAGS}" CFLAGS="${MANYLINUX_CFLAGS} -fPIC" CXXFLAGS="${MANYLINUX_CXXFLAGS} -fPIC" LDFLAGS="${MANYLINUX_LDFLAGS} -fPIC" && \
-    make && \
+    make -j4 && \
     make install_sw && \
     cd .. && \
     rm -rf openssl-OpenSSL_1_1_1s* && \
