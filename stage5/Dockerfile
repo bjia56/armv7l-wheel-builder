@@ -13,6 +13,7 @@ RUN ../gcc-10.2.0/configure \
       --enable-__cxa_atexit \
       --enable-clocale=gnu \
       --disable-multilib \
+      --with-system-zlib \
       --with-float=hard \
       --prefix=/usr/local/gcc/10.2.0
 RUN make -j4 && make install
