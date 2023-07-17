@@ -7,7 +7,7 @@ RUN wget -q https://ftp.gnu.org/gnu/gcc/gcc-10.2.0/gcc-10.2.0.tar.xz && \
     rm gcc-*.tar.xz
 WORKDIR gcc-10.2.0-build
 RUN ../gcc-10.2.0/configure \
-      --enable-languages=all \
+      --enable-languages=c,c++ \
       --enable-shared \
       --enable-threads=posix \
       --enable-__cxa_atexit \
