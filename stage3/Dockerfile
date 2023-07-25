@@ -1,3 +1,3 @@
 FROM stage2
 
-echo "TBD"
+RUN echo "TBD"
