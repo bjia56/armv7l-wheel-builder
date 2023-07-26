@@ -160,7 +160,7 @@ jobs:
             type=ref,event=branch
             type=ref,event=pr
 
-      - name: Build Docker image (stage 5)
+      - name: Build Docker image (finalize)
         uses: docker/build-push-action@v3
         with:
           context: ./finalize
