@@ -62,3 +62,10 @@ RUN wget -q https://www.python.org/ftp/python/3.11.1/Python-3.11.1.tgz && \
     make altinstall && \
     cd .. && \
     rm -rf Python-3.11.1*
+RUN wget -q https://www.python.org/ftp/python/3.12.0/Python-3.12.0.tgz && \
+    tar xf Python-3.12.0.tgz && \
+    cd Python-3.12.0 && \
+    ./configure --enable-optimizations && \
+    make altinstall && \
+    cd .. && \
+    rm -rf Python-3.12.0*
