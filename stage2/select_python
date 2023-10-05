@@ -1,0 +1,26 @@
+#!/bin/bash
+
+PY_VER=$1
+
+if [[ "$PY_VER" = "" ]]; then
+  echo "usage: $0 <python version>"
+  exit 1
+fi
+
+python_exe=/usr/local/bin/python$PY_VER
+pip_exe=/usr/local/bin/pip$PY_VER
+
+target_python=/usr/local/bin/python
+target_python3=/usr/local/bin/python3
+target_pip=/usr/local/bin/pip
+target_pip3=/usr/local/bin/pip3
+
+rm -f $target_python
+rm -f $target_python3
+rm -f $target_pip
+rm -f $target_pip3
+
+ln -s $python_exe $target_python
+ln -s $python_exe $target_python3
+ln -s $pip_exe $target_pip
+ln -s $pip_exe $target_pip3

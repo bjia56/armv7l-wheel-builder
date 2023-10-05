@@ -39,7 +39,7 @@ RUN pip3.7 install -U setuptools wheel && \
     pip3.9 install -U setuptools wheel && \
     pip3.10 install -U setuptools wheel && \
     pip3.11 install -U setuptools wheel && \
-    pip3.12 install -U setuptools wheel 
+    pip3.12 install -U setuptools wheel
 
 RUN ln -s /usr/local/bin/pip3.8 /usr/local/bin/pip
 RUN pip install auditwheel
@@ -52,3 +52,5 @@ ENV PATH=$PATH:/usr/local/go/bin
 RUN wget https://github.com/bjia56/armv7l-wheel-builder/releases/download/devtoolset-10-1/devtoolset-10.tar.gz && \
     tar -C / -xzf devtoolset-10.tar.gz && \
     rm devtoolset-10.tar.gz
+
+COPY select_python /usr/local/bin/select_python
