@@ -1,5 +1,12 @@
 FROM centos:7
 
+ARG PYTHON_37_VER=3.7.17
+ARG PYTHON_38_VER=3.8.18
+ARG PYTHON_39_VER=3.9.18
+ARG PYTHON_310_VER=3.10.13
+ARG PYTHON_311_VER=3.11.5
+ARG PYTHON_312_VER=3.12.0
+
 RUN echo "armhfp" > /etc/yum/vars/basearch && \
     echo "armv7hl" > /etc/yum/vars/arch && \
     echo "armv7hl-redhat-linux-gpu" > /etc/rpm/platform
@@ -27,45 +34,45 @@ RUN wget https://github.com/openssl/openssl/archive/refs/tags/OpenSSL_1_1_1s.tar
     rm -rf openssl-OpenSSL_1_1_1s* && \
     rm -rf OpenSSL_1_1_1s*
 
-RUN wget -q https://www.python.org/ftp/python/3.7.16/Python-3.7.16.tgz && \
-    tar xf Python-3.7.16.tgz && \
-    cd Python-3.7.16 && \
+RUN wget -q https://www.python.org/ftp/python/${PYTHON_37_VER}/Python-${PYTHON_37_VER}.tgz && \
+    tar xf Python-${PYTHON_37_VER}.tgz && \
+    cd Python-${PYTHON_37_VER} && \
     ./configure --with-lto=yes && \
     make -j4 altinstall && \
     cd .. && \
-    rm -rf Python-3.7.16*
-RUN wget -q https://www.python.org/ftp/python/3.8.16/Python-3.8.16.tgz && \
-    tar xf Python-3.8.16.tgz && \
-    cd Python-3.8.16 && \
+    rm -rf Python-${PYTHON_37_VER}*
+RUN wget -q https://www.python.org/ftp/python/${PYTHON_38_VER}/Python-${PYTHON_38_VER}.tgz && \
+    tar xf Python-${PYTHON_38_VER}.tgz && \
+    cd Python-${PYTHON_38_VER} && \
     ./configure --with-lto=yes && \
     make -j4 altinstall && \
     cd .. && \
-    rm -rf Python-3.8.16*
-RUN wget -q https://www.python.org/ftp/python/3.9.16/Python-3.9.16.tgz && \
-    tar xf Python-3.9.16.tgz && \
-    cd Python-3.9.16 && \
+    rm -rf Python-${PYTHON_38_VER}*
+RUN wget -q https://www.python.org/ftp/python/${PYTHON_39_VER}/Python-${PYTHON_39_VER}.tgz && \
+    tar xf Python-${PYTHON_39_VER}.tgz && \
+    cd Python-${PYTHON_39_VER} && \
     ./configure --with-lto=yes && \
     make -j4 altinstall && \
     cd .. && \
-    rm -rf Python-3.9.16*
-RUN wget -q https://www.python.org/ftp/python/3.10.9/Python-3.10.9.tgz && \
-    tar xf Python-3.10.9.tgz && \
-    cd Python-3.10.9 && \
+    rm -rf Python-${PYTHON_39_VER}*
+RUN wget -q https://www.python.org/ftp/python/${PYTHON_310_VER}/Python-${PYTHON_310_VER}.tgz && \
+    tar xf Python-${PYTHON_310_VER}.tgz && \
+    cd Python-${PYTHON_310_VER} && \
     ./configure --with-lto=yes && \
     make -j4 altinstall && \
     cd .. && \
-    rm -rf Python-3.10.9*
-RUN wget -q https://www.python.org/ftp/python/3.11.1/Python-3.11.1.tgz && \
-    tar xf Python-3.11.1.tgz && \
-    cd Python-3.11.1 && \
+    rm -rf Python-${PYTHON_310_VER}*
+RUN wget -q https://www.python.org/ftp/python/${PYTHON_311_VER}/Python-${PYTHON_311_VER}.tgz && \
+    tar xf Python-${PYTHON_311_VER}.tgz && \
+    cd Python-${PYTHON_311_VER} && \
     ./configure --with-lto=yes && \
     make -j4 altinstall && \
     cd .. && \
-    rm -rf Python-3.11.1*
-RUN wget -q https://www.python.org/ftp/python/3.12.0/Python-3.12.0.tgz && \
-    tar xf Python-3.12.0.tgz && \
-    cd Python-3.12.0 && \
+    rm -rf Python-${PYTHON_311_VER}*
+RUN wget -q https://www.python.org/ftp/python/${PYTHON_312_VER}/Python-${PYTHON_312_VER}.tgz && \
+    tar xf Python-${PYTHON_312_VER}.tgz && \
+    cd Python-${PYTHON_312_VER} && \
     ./configure --with-lto=yes && \
     make -j4 altinstall && \
     cd .. && \
-    rm -rf Python-3.12.0*
+    rm -rf Python-${PYTHON_312_VER}*
