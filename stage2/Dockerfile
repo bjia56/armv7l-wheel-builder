@@ -54,3 +54,4 @@ RUN wget https://github.com/bjia56/armv7l-wheel-builder/releases/download/devtoo
     rm devtoolset-10.tar.gz
 
 COPY select_python /usr/local/bin/select_python
+COPY select_go /usr/local/bin/select_go

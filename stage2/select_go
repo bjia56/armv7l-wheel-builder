@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -e
+
+GO_VER=$1
+if [[ "$GO_VER" = "" ]]; then
+  echo "usage: $0 <go version>"
+  exit 1
+fi
+
+curl -o /tmp/go.tar.gz -L https://go.dev/dl/go$GO_VER.linux-armv6l.tar.gz
+rm -rf /usr/local/go
+tar -C /usr/local -xzf /tmp/go.tar.gz
+rm /tmp/go.tar.gz
