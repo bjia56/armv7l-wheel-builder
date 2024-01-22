@@ -53,5 +53,11 @@ RUN wget https://github.com/bjia56/armv7l-wheel-builder/releases/download/devtoo
     tar -C / -xzf devtoolset-10.tar.gz && \
     rm devtoolset-10.tar.gz
 
+RUN wget https://github.com/bjia56/armv7l-wheel-builder/releases/download/devtoolset-10-binutils-1/binutils-2.35-5.el7.4.armv7hl.rpm && \
+    yum install binutils*.rpm && \
+    cd /opt/rh/devtoolset-10/root/ && \
+    rpm2cpio /binutils*.rpm | cpio -idmv && \
+    rm /binutils*.rpm
+
 COPY select_python /usr/local/bin/select_python
 COPY select_go /usr/local/bin/select_go
