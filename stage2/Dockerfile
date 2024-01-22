@@ -57,6 +57,7 @@ RUN wget https://github.com/bjia56/armv7l-wheel-builder/releases/download/devtoo
     yum install -y binutils*.rpm && \
     cd /opt/rh/devtoolset-10/root/ && \
     rpm2cpio /binutils*.rpm | cpio -idmv && \
+    ln -s /opt/rh/devtoolset-10/root/usr/bin/ld.bfd /opt/rh/devtoolset-10/root/usr/bin/ld && \
     rm /binutils*.rpm
 
 COPY select_python /usr/local/bin/select_python
