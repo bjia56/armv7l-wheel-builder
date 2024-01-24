@@ -60,5 +60,9 @@ RUN wget https://github.com/bjia56/armv7l-wheel-builder/releases/download/devtoo
     ln -s /opt/rh/devtoolset-10/root/usr/bin/ld.bfd /opt/rh/devtoolset-10/root/usr/bin/ld && \
     rm /binutils*.rpm
 
+RUN wget https://github.com/bjia56/armv7l-wheel-builder/releases/download/cross-pi-gcc-10-1/cross-pi-gcc.tar.gz && \
+    tar -C / -xzf cross-pi-gcc.tar.gz && \
+    rm cross-pi-gcc.tar.gz
+
 COPY select_python /usr/local/bin/select_python
 COPY select_go /usr/local/bin/select_go
