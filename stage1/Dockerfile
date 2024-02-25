@@ -4,8 +4,8 @@ ARG PYTHON_37_VER=3.7.17
 ARG PYTHON_38_VER=3.8.18
 ARG PYTHON_39_VER=3.9.18
 ARG PYTHON_310_VER=3.10.13
-ARG PYTHON_311_VER=3.11.7
-ARG PYTHON_312_VER=3.12.1
+ARG PYTHON_311_VER=3.11.8
+ARG PYTHON_312_VER=3.12.2
 
 RUN echo "armhfp" > /etc/yum/vars/basearch && \
     echo "armv7hl" > /etc/yum/vars/arch && \
