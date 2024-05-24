@@ -1,5 +1,14 @@
 FROM stage1
 
+RUN wget -q https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.45.1.tar.gz && \
+    tar xf git-2.45.1.tar.gz && \
+    cd git-2.45.1 && \
+    make configure && \
+    ./configure --prefix=/usr/local && \
+    make -j4 && \
+    make install && \
+    rm -rf git-2.45.1*
+
 RUN wget -q https://github.com/Kitware/CMake/releases/download/v3.25.1/cmake-3.25.1.tar.gz && \
     tar xf cmake-3.25.1.tar.gz && \
     cd cmake-3.25.1 && \
