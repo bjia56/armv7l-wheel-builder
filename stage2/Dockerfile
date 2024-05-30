@@ -60,10 +60,6 @@ RUN wget -q https://github.com/bjia56/armv7l-wheel-builder/releases/download/dev
     ln -s /opt/rh/devtoolset-10/root/usr/bin/ld.bfd /opt/rh/devtoolset-10/root/usr/bin/ld && \
     rm /binutils*.rpm
 
-RUN wget -q https://github.com/bjia56/armv7l-wheel-builder/releases/download/cross-pi-gcc-10-1/cross-pi-gcc.tar.gz && \
-    tar -C / -xzf cross-pi-gcc.tar.gz && \
-    rm cross-pi-gcc.tar.gz
-
 RUN wget -q https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.45.1.tar.gz && \
     yum -y install libcurl-devel && \
     tar xf git-2.45.1.tar.gz && \
