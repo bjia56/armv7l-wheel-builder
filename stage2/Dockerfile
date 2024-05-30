@@ -64,5 +64,15 @@ RUN wget https://github.com/bjia56/armv7l-wheel-builder/releases/download/cross-
     tar -C / -xzf cross-pi-gcc.tar.gz && \
     rm cross-pi-gcc.tar.gz
 
+RUN wget -q https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.45.1.tar.gz && \
+    tar xf git-2.45.1.tar.gz && \
+    cd git-2.45.1 && \
+    export PATH=/opt/rh/devtoolset-10/root/usr/bin:$PATH && \
+    make configure && \
+    ./configure --prefix=/usr/local && \
+    make -j4 && \
+    make install && \
+    rm -rf git-2.45.1*
+
 COPY select_python /usr/local/bin/select_python
 COPY select_go /usr/local/bin/select_go
