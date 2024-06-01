@@ -1,13 +1,13 @@
 FROM stage1
 
-RUN wget -q https://github.com/Kitware/CMake/releases/download/v3.25.1/cmake-3.25.1.tar.gz && \
-    tar xf cmake-3.25.1.tar.gz && \
-    cd cmake-3.25.1 && \
+RUN wget -q https://github.com/Kitware/CMake/releases/download/v3.29.3/cmake-3.29.3.tar.gz && \
+    tar xf cmake-*.tar.gz && \
+    cd cmake-* && \
     ./bootstrap -- -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_PREFIX_PATH=/usr/local/ssl && \
     make -j4 && \
     make install && \
     cd .. && \
-    rm -rf cmake-3.25.1*
+    rm -rf cmake-*
 
 RUN wget -q https://github.com/ninja-build/ninja/archive/refs/tags/v1.11.1.tar.gz && \
     tar xvf v1.11.1.tar.gz && \
