@@ -1,22 +1,7 @@
 FROM stage1
 
-RUN wget -q https://github.com/Kitware/CMake/releases/download/v3.29.3/cmake-3.29.3.tar.gz && \
-    tar xf cmake-*.tar.gz && \
-    cd cmake-* && \
-    ./bootstrap -- -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_PREFIX_PATH=/usr/local/ssl && \
-    make -j4 && \
-    make install && \
-    cd .. && \
-    rm -rf cmake-*
-
-RUN wget -q https://github.com/ninja-build/ninja/archive/refs/tags/v1.11.1.tar.gz && \
-    tar xvf v1.11.1.tar.gz && \
-    cd ninja-1.11.1 && \
-    python3.8 ./configure.py --bootstrap && \
-    mv ninja /usr/local/bin && \
-    cd .. && \
-    rm -rf ninja-1.11.1* && \
-    rm -rf v1.11.1*
+RUN pip3.8 install cmake==3.29.3 --extra-index-url https://bjia56.github.io/armv7l-wheels/
+RUN pip3.8 install ninja==1.11.1.1 --extra-index-url https://bjia56.github.io/armv7l-wheels/
 
 RUN wget -q https://github.com/NixOS/patchelf/releases/download/0.17.0/patchelf-0.17.0-armv7l.tar.gz && \
     tar xf patchelf-0.17.0-armv7l.tar.gz -C /usr/local/ && \
