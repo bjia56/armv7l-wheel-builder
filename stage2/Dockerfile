@@ -1,6 +1,6 @@
 FROM stage1
 
-RUN wget -q https://github.com/Kitware/CMake/releases/download/v3.29.5/cmake-3.29.5.tar.gz && \
+RUN wget -q https://github.com/Kitware/CMake/releases/download/v3.25.1/cmake-3.25.1.tar.gz && \
     tar xf cmake-*.tar.gz && \
     cd cmake-* && \
     ./bootstrap -- -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_PREFIX_PATH=/usr/local/ssl && \
