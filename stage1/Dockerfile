@@ -11,6 +11,11 @@ RUN echo "armhfp" > /etc/yum/vars/basearch && \
     echo "armv7hl" > /etc/yum/vars/arch && \
     echo "armv7hl-redhat-linux-gpu" > /etc/rpm/platform
 
+RUN sed -i 's/enabled=1/enabled=0/g' /etc/yum/pluginconf.d/fastestmirror.conf && \
+    sed -i 's/^mirrorlist/#mirrorlist/g' /etc/yum.repos.d/*.repo && \
+    sed -i 's;^.*baseurl=http://mirror;baseurl=https://vault;g' /etc/yum.repos.d/*.repo && \
+    sed -i 's;/centos/7/;/altarch/7/;g' /etc/yum.repos.d/*.repo
+
 RUN yum -y update && \
     yum -y groupinstall "Development Tools" && \
     yum -y install bzip2-devel libffi-devel xz-devel zlib-devel && \
