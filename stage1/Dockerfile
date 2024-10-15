@@ -6,6 +6,7 @@ ARG PYTHON_39_VER=3.9.20
 ARG PYTHON_310_VER=3.10.15
 ARG PYTHON_311_VER=3.11.10
 ARG PYTHON_312_VER=3.12.7
+ARG PYTHON_313_VER=3.13.0
 
 RUN echo "armhfp" > /etc/yum/vars/basearch && \
     echo "armv7hl" > /etc/yum/vars/arch && \
@@ -81,3 +82,10 @@ RUN wget -q https://www.python.org/ftp/python/${PYTHON_312_VER}/Python-${PYTHON_
     make -j4 altinstall && \
     cd .. && \
     rm -rf Python-${PYTHON_312_VER}*
+RUN wget -q https://www.python.org/ftp/python/${PYTHON_313_VER}/Python-${PYTHON_313_VER}.tgz && \
+    tar xf Python-${PYTHON_313_VER}.tgz && \
+    cd Python-${PYTHON_313_VER} && \
+    ./configure --with-lto=yes && \
+    make -j4 altinstall && \
+    cd .. && \
+    rm -rf Python-${PYTHON_313_VER}*
