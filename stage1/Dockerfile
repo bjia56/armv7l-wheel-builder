@@ -92,6 +92,7 @@ RUN wget -q https://www.python.org/ftp/python/${PYTHON_313_VER}/Python-${PYTHON_
 RUN wget -q https://www.python.org/ftp/python/${PYTHON_313_VER}/Python-${PYTHON_313_VER}.tgz && \
     tar xf Python-${PYTHON_313_VER}.tgz && \
     cd Python-${PYTHON_313_VER} && \
+    export PATH=/opt/rh/devtoolset-10/root/usr/bin:$PATH && \
     ./configure --with-lto=yes --disable-gil --with-mimalloc && \
     make -j4 altinstall && \
     cd .. && \
