@@ -89,3 +89,10 @@ RUN wget -q https://www.python.org/ftp/python/${PYTHON_313_VER}/Python-${PYTHON_
     make -j4 altinstall && \
     cd .. && \
     rm -rf Python-${PYTHON_313_VER}*
+RUN wget -q https://www.python.org/ftp/python/${PYTHON_313_VER}/Python-${PYTHON_313_VER}.tgz && \
+    tar xf Python-${PYTHON_313_VER}.tgz && \
+    cd Python-${PYTHON_313_VER} && \
+    ./configure --with-lto=yes --disable-gil && \
+    make -j4 altinstall && \
+    cd .. && \
+    rm -rf Python-${PYTHON_313_VER}*
