@@ -24,6 +24,17 @@ RUN yum -y update && \
     yum -y clean all && \
     rm -rf /var/cache
 
+RUN wget -q https://github.com/bjia56/armv7l-wheel-builder/releases/download/devtoolset-10-1/devtoolset-10.tar.gz && \
+    tar -C / -xzf devtoolset-10.tar.gz && \
+    rm devtoolset-10.tar.gz
+
+RUN wget -q https://github.com/bjia56/armv7l-wheel-builder/releases/download/devtoolset-10-binutils-1/binutils-2.35-5.el7.4.armv7hl.rpm && \
+    yum install -y binutils*.rpm && \
+    cd /opt/rh/devtoolset-10/root/ && \
+    rpm2cpio /binutils*.rpm | cpio -idmv && \
+    ln -s /opt/rh/devtoolset-10/root/usr/bin/ld.bfd /opt/rh/devtoolset-10/root/usr/bin/ld && \
+    rm /binutils*.rpm
+
 ## ENV adapted from:
 ## https://github.com/pypa/manylinux/blob/0d3846337cef6977dead88453daae63d44f1ea5b/docker/build_scripts/build_utils.sh#L8-L11
 ENV MANYLINUX_CPPFLAGS="-D_FORTIFY_SOURCE=2"
