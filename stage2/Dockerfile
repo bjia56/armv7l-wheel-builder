@@ -34,17 +34,6 @@ RUN wget -q https://go.dev/dl/go1.19.10.linux-armv6l.tar.gz && \
     rm go1.19.10.linux-armv6l.tar.gz
 ENV PATH=$PATH:/usr/local/go/bin
 
-RUN wget -q https://github.com/bjia56/armv7l-wheel-builder/releases/download/devtoolset-10-1/devtoolset-10.tar.gz && \
-    tar -C / -xzf devtoolset-10.tar.gz && \
-    rm devtoolset-10.tar.gz
-
-RUN wget -q https://github.com/bjia56/armv7l-wheel-builder/releases/download/devtoolset-10-binutils-1/binutils-2.35-5.el7.4.armv7hl.rpm && \
-    yum install -y binutils*.rpm && \
-    cd /opt/rh/devtoolset-10/root/ && \
-    rpm2cpio /binutils*.rpm | cpio -idmv && \
-    ln -s /opt/rh/devtoolset-10/root/usr/bin/ld.bfd /opt/rh/devtoolset-10/root/usr/bin/ld && \
-    rm /binutils*.rpm
-
 RUN wget -q https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.45.1.tar.gz && \
     yum -y install libcurl-devel && \
     tar xf git-2.45.1.tar.gz && \
