@@ -7,8 +7,14 @@ if [[ "$PY_VER" = "" ]]; then
   exit 1
 fi
 
-python_exe=/usr/local/bin/python$PY_VER
-pip_exe=/usr/local/bin/pip$PY_VER
+if [[ "$PY_VER" = "3.13t" ]]; then
+  PY_VER=3.13
+  python_exe=/usr/local/t/bin/python$PY_VER
+  pip_exe=/usr/local/t/bin/pip$PY_VER
+else
+  python_exe=/usr/local/bin/python$PY_VER
+  pip_exe=/usr/local/bin/pip$PY_VER 
+fi
 
 target_python=/usr/local/bin/python
 target_python3=/usr/local/bin/python3
