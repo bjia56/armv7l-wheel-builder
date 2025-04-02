@@ -71,7 +71,7 @@ jobs:
           driver-opts: network=host
 
       - name: Download artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: stage1
           path: /tmp
@@ -129,7 +129,7 @@ jobs:
           driver-opts: network=host
 
       - name: Download artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: stage2
           path: /tmp
