@@ -30,7 +30,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Build Docker image (stage 1)
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
           context: ./stage1
           push: false
@@ -87,7 +87,7 @@ jobs:
           docker image push localhost:5000/stage1:latest
 
       - name: Build Docker image (stage 2)
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
           context: ./stage2
           build-contexts: stage1=docker-image://localhost:5000/stage1:latest
@@ -162,7 +162,7 @@ jobs:
             type=ref,event=pr
 
       - name: Build Docker image (finalize)
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
           context: ./finalize
           build-contexts: base=docker-image://localhost:5000/stage2:latest
