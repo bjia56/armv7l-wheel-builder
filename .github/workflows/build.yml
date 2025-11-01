@@ -41,7 +41,7 @@ jobs:
           outputs: type=docker,dest=/tmp/stage1.tar
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: stage1
           path: /tmp/stage1.tar
@@ -99,7 +99,7 @@ jobs:
           outputs: type=docker,dest=/tmp/stage2.tar
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: stage2
           path: /tmp/stage2.tar
